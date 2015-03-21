@@ -6,6 +6,7 @@ var getImage = require('get-image');
 var random = require('lodash.random');
 var eachLimit = require('./eachLimit');
 var loadedImages = {};
+var GlslTransitions = require('glsl-transition');
 
 /**
  * Helper to determine the resolution
@@ -133,6 +134,7 @@ var KenBurnsComponent = React.createClass({
                         resolution={this.props.resolution || resolution}
                         loop={true}
                         autoplay={true}
+                        GlslTransitions={GlslTransitions}
                         onDiaporamaCreated={this.diaporamaMounted}
                     />
                 </div>);
