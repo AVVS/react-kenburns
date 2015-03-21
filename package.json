@@ -1,0 +1,25 @@
+{
+  "name": "react-kenburns",
+  "version": "0.0.1",
+  "description": "Creates react component displaying ken burns slideshow",
+  "main": "./lib/kenburns.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AVVS/react-kenburns.git"
+  },
+  "keywords": [
+    "react",
+    "kenburns",
+    "gallery",
+    "slideshow"
+  ],
+  "author": "Vitaly Aminev <v@aminev.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AVVS/react-kenburns/issues"
+  },
+  "homepage": "https://github.com/AVVS/react-kenburns"
+}
