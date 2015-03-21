@@ -1,6 +1,6 @@
 {
   "name": "react-kenburns",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Creates react component displaying ken burns slideshow",
   "main": "./lib/kenburns.jsx",
   "scripts": {

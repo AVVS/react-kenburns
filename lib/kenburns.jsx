@@ -46,6 +46,10 @@ var KenBurnsComponent = React.createClass({
         var images = this.props.images;
         var self = this;
 
+        if (!Array.isArray(images)) {
+            images = [images];
+        }
+
         // component has load control, however, it display a black screen
         // before the first image is loaded, so we'll display placeholder
         // before that and load images in background, and only then mutate state
@@ -115,8 +119,8 @@ var KenBurnsComponent = React.createClass({
 
     render: function () {
 
-        if (this.state.images.length === 0) {
-            return (<img src={this.props.fallback} width={this.props.width} height={this.props.height} />);
+        if (this.state.images.length < 2) {
+            return (<img src={this.state.images[0] || this.props.fallback} width={this.props.width} height={this.props.height} />);
         }
 
         return (<div onClick={this.handleClick}>
