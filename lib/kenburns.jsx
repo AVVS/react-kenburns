@@ -42,8 +42,9 @@ var KenBurnsComponent = React.createClass({
         this.resolveImages();
     },
 
-    resolveImages: function () {
-        var images = this.props.images;
+    resolveImages: function (props) {
+        props = props || this.props;
+        var images = props.images;
         var self = this;
 
         if (!Array.isArray(images)) {
@@ -104,7 +105,7 @@ var KenBurnsComponent = React.createClass({
 
     componentWillReceiveProps: function (nextProps) {
         this.setState({ images: [] });
-        this.resolveImages();
+        this.resolveImages(nextProps);
     },
 
     diaporamaMounted: function (diaporama) {
@@ -118,13 +119,14 @@ var KenBurnsComponent = React.createClass({
     },
 
     render: function () {
-
         if (this.state.images.length < 2) {
-            return (<img src={this.state.images[0] || this.props.fallback} width={this.props.width} height={this.props.height} />);
+            var src = this.state.images[0] && this.state.images[0].image || this.props.fallback;
+            return (<img src={src} width={this.props.width} height={this.props.height} />);
         }
 
         return (<div onClick={this.handleClick}>
                     <DiaporamaComponent
+                        key='diaporama'
                         data={{ timeline: this.state.images }}
                         width={this.props.width}
                         height={this.props.height}
