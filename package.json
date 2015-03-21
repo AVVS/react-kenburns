@@ -2,7 +2,7 @@
   "name": "react-kenburns",
   "version": "0.0.1",
   "description": "Creates react component displaying ken burns slideshow",
-  "main": "./lib/kenburns.js",
+  "main": "./lib/kenburns.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,5 +21,21 @@
   "bugs": {
     "url": "https://github.com/AVVS/react-kenburns/issues"
   },
-  "homepage": "https://github.com/AVVS/react-kenburns"
+  "homepage": "https://github.com/AVVS/react-kenburns",
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  },
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "gulp": "^3.8.11",
+    "gulp-serve": "^0.3.1",
+    "react": "^0.13.1",
+    "reactify": "^1.1.0"
+  },
+  "dependencies": {
+    "diaporama-react": "AVVS/diaporama-react",
+    "lodash.random": "^3.0.0"
+  }
 }
