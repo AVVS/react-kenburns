@@ -2,7 +2,7 @@
 
 var React = require('react/addons');
 var DiaporamaComponent = require('diaporama-react');
-var getImage = require('get-image');
+var getImage = require('./getImage');
 var random = require('lodash.random');
 var eachLimit = require('./eachLimit');
 var loadedImages = {};
@@ -64,9 +64,10 @@ var KenBurnsComponent = React.createClass({
                 return next();
             }
 
-            getImage(imageSource, function (err, img) {
+            getImage(imageSource, function imageHasLoaded(err, img) {
 
                 if (err) {
+                    console.error(err);
                     loadedImages[imageSource] = false;
                     return next();
                 }
