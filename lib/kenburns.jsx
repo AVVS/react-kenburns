@@ -67,7 +67,6 @@ var KenBurnsComponent = React.createClass({
             getImage(imageSource, function imageHasLoaded(err, img) {
 
                 if (err) {
-                    console.error(err);
                     loadedImages[imageSource] = false;
                     return next();
                 }
@@ -114,9 +113,21 @@ var KenBurnsComponent = React.createClass({
         this.diaporama = diaporama;
     },
 
-    handleClick: function (e) {
+    nextSlide: function () {
         if (this.diaporama && this.state.images.length > 1) {
             this.diaporama.next();
+        }
+    },
+
+    pause: function () {
+        if (this.diaporama && this.state.images.length > 1) {
+            this.diaporama.pause();
+        }
+    },
+
+    play: function () {
+        if (this.diaporama && this.state.images.length > 1) {
+            this.diaporama.play();
         }
     },
 
@@ -126,19 +137,17 @@ var KenBurnsComponent = React.createClass({
             return (<img src={src} width={this.props.width} height={this.props.height} />);
         }
 
-        return (<div onClick={this.handleClick}>
-                    <DiaporamaComponent
-                        key='diaporama'
-                        data={{ timeline: this.state.images }}
-                        width={this.props.width}
-                        height={this.props.height}
-                        resolution={this.props.resolution || resolution}
-                        loop={true}
-                        autoplay={true}
-                        GlslTransitions={GlslTransitions}
-                        onDiaporamaCreated={this.diaporamaMounted}
-                    />
-                </div>);
+        return (<DiaporamaComponent
+                    key='diaporama'
+                    data={{ timeline: this.state.images }}
+                    width={this.props.width}
+                    height={this.props.height}
+                    resolution={this.props.resolution || resolution}
+                    loop={true}
+                    autoplay={true}
+                    GlslTransitions={GlslTransitions}
+                    onDiaporamaCreated={this.diaporamaMounted}
+                />);
     }
 
 });
