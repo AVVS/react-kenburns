@@ -7,6 +7,7 @@ var random = require('lodash.random');
 var eachLimit = require('./eachLimit');
 var loadedImages = {};
 var GlslTransitions = require('glsl-transition');
+var update = React.addons.update;
 
 /**
  * Helper to determine the resolution
@@ -84,24 +85,41 @@ var KenBurnsComponent = React.createClass({
 
     pushImage: function (source) {
         if (this.isMounted()) {
-            var image = {
-                image: source,
-                duration: this.props.duration || 4000,
-                kenburns: {
-                    from: [ random(0.6, 0.8), [ random(0.4, 0.6), random(0.4, 0.6) ] ],
-                    to: [ random(0.7, 0.9), [ random(0.4, 0.6), random(0.4, 0.6) ] ]
-                },
-                transitionNext: {
-                    duration: this.props.transitionDuration || 3000
-                }
-            };
+            var images = this.state.images;
+            var length = images.length;
+            var image = this.createSlide(source, true);
 
-            this.setState(React.addons.update(this.state, {
+            if (length === 0) {
+                return this.setState({ images: [image] });
+            }
+
+            var lastSlide = this.createSlide(images[length - 1].image);
+
+            this.setState(update(this.state, {
                 images: {
-                    $push: [image]
+                    $splice: [[length - 1, 1, lastSlide, image]]
                 }
             }));
         }
+    },
+
+    createSlide: function (url, isLast) {
+        var image = {
+            image: url,
+            duration: this.props.duration || 4000,
+            kenburns: {
+                from: [ random(0.6, 0.8), [ random(0.4, 0.6), random(0.4, 0.6) ] ],
+                to: [ random(0.7, 0.9), [ random(0.4, 0.6), random(0.4, 0.6) ] ]
+            }
+        };
+
+        if (!isLast) {
+            image.transitionNext = {
+                duration: this.props.transitionDuration || 3000
+            };
+        }
+
+        return image;
     },
 
     componentWillReceiveProps: function (nextProps) {
