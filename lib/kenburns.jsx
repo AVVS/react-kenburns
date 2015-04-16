@@ -44,6 +44,10 @@ var KenBurnsComponent = React.createClass({
         this.resolveImages();
     },
 
+    componentWillUnmount: function () {
+        this.diaporama = null;
+    },
+
     resolveImages: function (props) {
         props = props || this.props;
         var images = props.images;
@@ -133,7 +137,7 @@ var KenBurnsComponent = React.createClass({
 
     nextSlide: function () {
         if (this.diaporama && this.state.images.length > 1) {
-            this.diaporama.next();
+            this.diaporama.next(this.props.transitionDuration || 1000);
         }
     },
 
