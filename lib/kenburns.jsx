@@ -108,7 +108,7 @@ var KenBurnsComponent = React.createClass({
                 from: [ random(0.6, 0.8), [ random(0.4, 0.6), random(0.4, 0.6) ] ],
                 to: [ random(0.7, 0.9), [ random(0.4, 0.6), random(0.4, 0.6) ] ]
             },
-            transitionNext = {
+            transitionNext: {
                 duration: this.props.transitionDuration || 3000
             }
         };
